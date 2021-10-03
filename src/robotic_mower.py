@@ -15,15 +15,16 @@ class RoboticMower:
         self.__orientation = orientation
 
     def execute(self, instructions: str) -> Optional[str]:
-        if instructions == MOVE_COMMAND:
-            if self.__orientation == NORTH_ORIENTATION:
-                self.__y += 1
-            if self.__orientation == SOUTH_ORIENTATION:
-                self.__y -= 1
-            if self.__orientation == EAST_ORIENTATION:
-                self.__x -= 1
-            if self.__orientation == WEST_ORIENTATION:
-                self.__x += 1
+        for instruction in list(instructions):
+            if instruction == MOVE_COMMAND:
+                if self.__orientation == NORTH_ORIENTATION:
+                    self.__y += 1
+                if self.__orientation == SOUTH_ORIENTATION:
+                    self.__y -= 1
+                if self.__orientation == EAST_ORIENTATION:
+                    self.__x -= 1
+                if self.__orientation == WEST_ORIENTATION:
+                    self.__x += 1
         return self.__format_position()
 
     def __format_position(self):

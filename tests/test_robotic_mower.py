@@ -74,3 +74,18 @@ def test_return_position_when_orientation_west_and_move_instruction_received():
     ).execute(instructions=received_instructions)
 
     assert expected_position == current_position
+
+
+def test_return_position_when_orientation_west_and_several_move_instruction_received():
+    initial_x = 1
+    initial_y = 2
+    initial_orientation = "W"
+    received_instructions = f"{MOVE_COMMAND}{MOVE_COMMAND}"
+
+    expected_position = "3 2 W"
+
+    current_position = RoboticMower(
+        x=initial_x, y=initial_y, orientation=initial_orientation
+    ).execute(instructions=received_instructions)
+
+    assert expected_position == current_position
