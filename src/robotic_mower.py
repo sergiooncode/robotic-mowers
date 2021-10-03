@@ -1,6 +1,6 @@
 from typing import Optional
 
-MOVE_COMMAND = "M"
+MOVE_INSTRUCTION = "M"
 NORTH_ORIENTATION = "N"
 SOUTH_ORIENTATION = "S"
 EAST_ORIENTATION = "E"
@@ -35,4 +35,4 @@ class RoboticMower:
 
     @staticmethod
     def __is_move(instruction):
-        return instruction == MOVE_COMMAND
+        return instruction == MOVE_INSTRUCTION

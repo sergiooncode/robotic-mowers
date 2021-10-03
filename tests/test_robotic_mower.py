@@ -1,4 +1,4 @@
-from src.robotic_mower import RoboticMower, MOVE_COMMAND
+from src.robotic_mower import RoboticMower, MOVE_INSTRUCTION
 
 
 def test_return_position_when_empty_instructions_received():
@@ -20,7 +20,7 @@ def test_return_position_when_move_instruction_received():
     initial_x = 1
     initial_y = 2
     initial_orientation = "N"
-    received_instructions = MOVE_COMMAND
+    received_instructions = MOVE_INSTRUCTION
 
     expected_position = "1 3 N"
 
@@ -35,7 +35,7 @@ def test_return_position_when_orientation_south_and_move_instruction_received():
     initial_x = 1
     initial_y = 2
     initial_orientation = "S"
-    received_instructions = MOVE_COMMAND
+    received_instructions = MOVE_INSTRUCTION
 
     expected_position = "1 1 S"
 
@@ -50,7 +50,7 @@ def test_return_position_when_orientation_east_and_move_instruction_received():
     initial_x = 1
     initial_y = 2
     initial_orientation = "E"
-    received_instructions = MOVE_COMMAND
+    received_instructions = MOVE_INSTRUCTION
 
     expected_position = "0 2 E"
 
@@ -65,7 +65,7 @@ def test_return_position_when_orientation_west_and_move_instruction_received():
     initial_x = 1
     initial_y = 2
     initial_orientation = "W"
-    received_instructions = MOVE_COMMAND
+    received_instructions = MOVE_INSTRUCTION
 
     expected_position = "2 2 W"
 
@@ -80,7 +80,7 @@ def test_return_position_when_orientation_west_and_several_move_instruction_rece
     initial_x = 1
     initial_y = 2
     initial_orientation = "W"
-    received_instructions = f"{MOVE_COMMAND}{MOVE_COMMAND}"
+    received_instructions = f"{MOVE_INSTRUCTION}{MOVE_INSTRUCTION}"
 
     expected_position = "3 2 W"
 
