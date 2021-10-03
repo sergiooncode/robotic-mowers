@@ -11,10 +11,10 @@ ONE_GRID_POINT_UP = 1
 ONE_GRID_POINT_DOWN = -1
 ONE_GRID_POINT_RIGHT = 1
 ONE_GRID_POINT_LEFT = -1
+POSITION_FORMAT = "{x} {y} {orientation}"
 
 
 class RoboticMower:
-
     def __init__(self, position: Position):
         self.__position = position
 
@@ -45,7 +45,11 @@ class RoboticMower:
         self.__position.y += step_size
 
     def __format_position(self):
-        return f"{self.__position.x} {self.__position.y} {self.__position.orientation}"
+        return POSITION_FORMAT.format(
+            x=self.__position.x,
+            y=self.__position.y,
+            orientation=self.__position.orientation,
+        )
 
     def __is_heading(self, orientation):
         return self.__position.orientation == orientation
