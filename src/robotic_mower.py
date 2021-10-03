@@ -22,6 +22,24 @@ class RoboticMower:
         for instruction in self.__instructions_split_from(instructions_string):
             if self.__is_move(instruction):
                 self.__move()
+            if instruction == "L":
+                if self.__position.orientation == "N":
+                    self.__position.orientation = "W"
+                elif self.__position.orientation == "S":
+                    self.__position.orientation = "E"
+                elif self.__position.orientation == "W":
+                    self.__position.orientation = "S"
+                elif self.__position.orientation == "E":
+                    self.__position.orientation = "N"
+            if instruction == "R":
+                if self.__position.orientation == "N":
+                    self.__position.orientation = "E"
+                elif self.__position.orientation == "S":
+                    self.__position.orientation = "W"
+                elif self.__position.orientation == "W":
+                    self.__position.orientation = "N"
+                elif self.__position.orientation == "E":
+                    self.__position.orientation = "S"
         return self.__format_position()
 
     @staticmethod
