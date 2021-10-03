@@ -212,21 +212,6 @@ def test_return_position_when_orientation_east_and_turn_right_instruction_receiv
     assert expected_position == current_position
 
 
-def test_return_position_when_orientation_east_and_turn_right_instruction_received():
-    initial_x = 1
-    initial_y = 2
-    initial_orientation = "E"
-    received_instructions = "R"
-
-    expected_position = "1 2 S"
-
-    current_position = RoboticMowerController(
-        mower=RoboticMower(x=initial_x, y=initial_y, orientation=initial_orientation)
-    ).execute(instructions_string=received_instructions)
-
-    assert expected_position == current_position
-
-
 def test_return_position_when_orientation_east_and_two_turn_right_instructions_received():
     initial_x = 1
     initial_y = 2
