@@ -1,5 +1,7 @@
 from typing import Optional
 
+from src.position import Position
+
 MOVE_INSTRUCTION = "M"
 NORTH_ORIENTATION = "N"
 SOUTH_ORIENTATION = "S"
@@ -13,10 +15,8 @@ ONE_GRID_POINT_LEFT = -1
 
 class RoboticMower:
 
-    def __init__(self, x: int, y: int, orientation: str):
-        self.__x = x
-        self.__y = y
-        self.__orientation = orientation
+    def __init__(self, position: Position):
+        self.__position = position
 
     def execute(self, instructions_string: str) -> Optional[str]:
         for instruction in self.__instructions_split_from(instructions_string):
@@ -39,16 +39,16 @@ class RoboticMower:
             self.__move_horizontally(ONE_GRID_POINT_LEFT)
 
     def __move_horizontally(self, step_size):
-        self.__x = self.__x + step_size
+        self.__position.x += step_size
 
     def __move_vertically(self, step_size):
-        self.__y = self.__y + step_size
+        self.__position.y += step_size
 
     def __format_position(self):
-        return f"{self.__x} {self.__y} {self.__orientation}"
+        return f"{self.__position.x} {self.__position.y} {self.__position.orientation}"
 
     def __is_heading(self, orientation):
-        return self.__orientation == orientation
+        return self.__position.orientation == orientation
 
     @staticmethod
     def __is_move(instruction):
