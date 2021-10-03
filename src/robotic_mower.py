@@ -18,11 +18,15 @@ class RoboticMower:
         self.__y = y
         self.__orientation = orientation
 
-    def execute(self, instructions: str) -> Optional[str]:
-        for instruction in list(instructions):
+    def execute(self, instructions_string: str) -> Optional[str]:
+        for instruction in self.__instructions_split_from(instructions_string):
             if self.__is_move(instruction):
                 self.__move()
         return self.__format_position()
+
+    @staticmethod
+    def __instructions_split_from(instructions_string):
+        return list(instructions_string)
 
     def __move(self):
         if self.__is_heading(NORTH_ORIENTATION):

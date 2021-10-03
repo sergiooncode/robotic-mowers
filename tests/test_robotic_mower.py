@@ -11,7 +11,7 @@ def test_return_position_when_empty_instructions_received():
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
-    ).execute(instructions=empty_instructions)
+    ).execute(instructions_string=empty_instructions)
 
     assert expected_position == current_position
 
@@ -26,7 +26,7 @@ def test_return_position_when_move_instruction_received():
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
-    ).execute(instructions=received_instructions)
+    ).execute(instructions_string=received_instructions)
 
     assert expected_position == current_position
 
@@ -41,7 +41,7 @@ def test_return_position_when_orientation_south_and_move_instruction_received():
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
-    ).execute(instructions=received_instructions)
+    ).execute(instructions_string=received_instructions)
 
     assert expected_position == current_position
 
@@ -56,7 +56,7 @@ def test_return_position_when_orientation_east_and_move_instruction_received():
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
-    ).execute(instructions=received_instructions)
+    ).execute(instructions_string=received_instructions)
 
     assert expected_position == current_position
 
@@ -71,7 +71,7 @@ def test_return_position_when_orientation_west_and_move_instruction_received():
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
-    ).execute(instructions=received_instructions)
+    ).execute(instructions_string=received_instructions)
 
     assert expected_position == current_position
 
@@ -86,6 +86,6 @@ def test_return_position_when_orientation_east_and_several_move_instruction_rece
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
-    ).execute(instructions=received_instructions)
+    ).execute(instructions_string=received_instructions)
 
     assert expected_position == current_position
