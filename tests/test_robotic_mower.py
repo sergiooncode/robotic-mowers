@@ -17,7 +17,7 @@ def test_return_position_when_empty_instructions_received():
     assert expected_position == current_position
 
 
-def test_return_position_when_move_instruction_received():
+def test_return_position_when_orientation_north_and_move_instruction_received():
     initial_x = 1
     initial_y = 2
     initial_orientation = "N"
