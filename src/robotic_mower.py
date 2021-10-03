@@ -25,7 +25,7 @@ class RoboticMower:
     def __move_vertically(self, step_size):
         self.y += step_size
 
-    def move(self):
+    def move(self) -> None:
         if self.__is_heading(NORTH_ORIENTATION):
             self.__move_vertically(ONE_GRID_POINT_UP)
         if self.__is_heading(SOUTH_ORIENTATION):
@@ -35,7 +35,7 @@ class RoboticMower:
         if self.__is_heading(WEST_ORIENTATION):
             self.__move_horizontally(ONE_GRID_POINT_LEFT)
 
-    def turn_right(self):
+    def turn_right(self) -> None:
         if self.__is_heading(NORTH_ORIENTATION):
             self.orientation = EAST_ORIENTATION
         elif self.__is_heading(SOUTH_ORIENTATION):
@@ -45,7 +45,7 @@ class RoboticMower:
         elif self.__is_heading(EAST_ORIENTATION):
             self.orientation = SOUTH_ORIENTATION
 
-    def turn_left(self):
+    def turn_left(self) -> None:
         if self.__is_heading(NORTH_ORIENTATION):
             self.orientation = WEST_ORIENTATION
         elif self.__is_heading(SOUTH_ORIENTATION):
