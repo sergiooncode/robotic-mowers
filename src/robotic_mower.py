@@ -1,6 +1,10 @@
 from typing import Optional
 
 MOVE_COMMAND = "M"
+NORTH_ORIENTATION = "N"
+SOUTH_ORIENTATION = "S"
+EAST_ORIENTATION = "E"
+WEST_ORIENTATION = "W"
 
 
 class RoboticMower:
@@ -12,7 +16,14 @@ class RoboticMower:
 
     def execute(self, instructions: str) -> Optional[str]:
         if instructions == MOVE_COMMAND:
-            self.__y += 1
+            if self.__orientation == NORTH_ORIENTATION:
+                self.__y += 1
+            if self.__orientation == SOUTH_ORIENTATION:
+                self.__y -= 1
+            if self.__orientation == EAST_ORIENTATION:
+                self.__x -= 1
+            if self.__orientation == WEST_ORIENTATION:
+                self.__x += 1
         return self.__format_position()
 
     def __format_position(self):
