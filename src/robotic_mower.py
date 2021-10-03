@@ -3,6 +3,8 @@ from typing import Optional
 from src.position import Position
 
 MOVE_INSTRUCTION = "M"
+LEFT_TURN_INSTRUCTION = "L"
+RIGHT_TURN_INSTRUCTION = "R"
 NORTH_ORIENTATION = "N"
 SOUTH_ORIENTATION = "S"
 EAST_ORIENTATION = "E"
@@ -22,25 +24,31 @@ class RoboticMower:
         for instruction in self.__instructions_split_from(instructions_string):
             if self.__is_move(instruction):
                 self.__move()
-            if instruction == "L":
-                if self.__position.orientation == "N":
-                    self.__position.orientation = "W"
-                elif self.__position.orientation == "S":
-                    self.__position.orientation = "E"
-                elif self.__position.orientation == "W":
-                    self.__position.orientation = "S"
-                elif self.__position.orientation == "E":
-                    self.__position.orientation = "N"
-            if instruction == "R":
-                if self.__position.orientation == "N":
-                    self.__position.orientation = "E"
-                elif self.__position.orientation == "S":
-                    self.__position.orientation = "W"
-                elif self.__position.orientation == "W":
-                    self.__position.orientation = "N"
-                elif self.__position.orientation == "E":
-                    self.__position.orientation = "S"
+            if self.__is_left_turn(instruction):
+                self.__turn_left()
+            if self.__is_right_turn(instruction):
+                self.__turn_right()
         return self.__format_position()
+
+    def __turn_right(self):
+        if self.__is_heading(NORTH_ORIENTATION):
+            self.__position.orientation = EAST_ORIENTATION
+        elif self.__is_heading(SOUTH_ORIENTATION):
+            self.__position.orientation = WEST_ORIENTATION
+        elif self.__is_heading(WEST_ORIENTATION):
+            self.__position.orientation = NORTH_ORIENTATION
+        elif self.__is_heading(EAST_ORIENTATION):
+            self.__position.orientation = SOUTH_ORIENTATION
+
+    def __turn_left(self):
+        if self.__is_heading(NORTH_ORIENTATION):
+            self.__position.orientation = WEST_ORIENTATION
+        elif self.__is_heading(SOUTH_ORIENTATION):
+            self.__position.orientation = EAST_ORIENTATION
+        elif self.__is_heading(WEST_ORIENTATION):
+            self.__position.orientation = SOUTH_ORIENTATION
+        elif self.__is_heading(EAST_ORIENTATION):
+            self.__position.orientation = NORTH_ORIENTATION
 
     @staticmethod
     def __instructions_split_from(instructions_string):
@@ -75,3 +83,11 @@ class RoboticMower:
     @staticmethod
     def __is_move(instruction):
         return instruction == MOVE_INSTRUCTION
+
+    @staticmethod
+    def __is_left_turn(instruction):
+        return instruction == LEFT_TURN_INSTRUCTION
+
+    @staticmethod
+    def __is_right_turn(instruction):
+        return instruction == RIGHT_TURN_INSTRUCTION
