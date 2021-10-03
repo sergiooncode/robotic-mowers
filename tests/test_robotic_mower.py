@@ -52,7 +52,7 @@ def test_return_position_when_orientation_east_and_move_instruction_received():
     initial_orientation = "E"
     received_instructions = MOVE_INSTRUCTION
 
-    expected_position = "0 2 E"
+    expected_position = "2 2 E"
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
@@ -67,7 +67,7 @@ def test_return_position_when_orientation_west_and_move_instruction_received():
     initial_orientation = "W"
     received_instructions = MOVE_INSTRUCTION
 
-    expected_position = "2 2 W"
+    expected_position = "0 2 W"
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
@@ -76,13 +76,13 @@ def test_return_position_when_orientation_west_and_move_instruction_received():
     assert expected_position == current_position
 
 
-def test_return_position_when_orientation_west_and_several_move_instruction_received():
+def test_return_position_when_orientation_east_and_several_move_instruction_received():
     initial_x = 1
     initial_y = 2
-    initial_orientation = "W"
+    initial_orientation = "E"
     received_instructions = f"{MOVE_INSTRUCTION}{MOVE_INSTRUCTION}"
 
-    expected_position = "3 2 W"
+    expected_position = "3 2 E"
 
     current_position = RoboticMower(
         x=initial_x, y=initial_y, orientation=initial_orientation
