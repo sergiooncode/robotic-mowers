@@ -30,7 +30,7 @@ class RoboticMowerController:
         return POSITION_FORMAT.format(
             x=self.__mower.x,
             y=self.__mower.y,
-            orientation=self.__mower.orientation,
+            orientation=self.__mower.orientation.name(),
         )
 
     @staticmethod
