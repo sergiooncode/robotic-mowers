@@ -18,9 +18,9 @@ class RoboticMowerController:
 
     def execute(self, instructions_string: str) -> Optional[str]:
         instruction_to_command_map = {
-            "M": self.__mower.move,
-            "L": self.__mower.turn_left,
-            "R": self.__mower.turn_right
+            MOVE_INSTRUCTION: self.__mower.move,
+            LEFT_TURN_INSTRUCTION: self.__mower.turn_left,
+            RIGHT_TURN_INSTRUCTION: self.__mower.turn_right
         }
 
         for instruction in self.__instructions_split_from(instructions_string):
@@ -38,18 +38,6 @@ class RoboticMowerController:
             y=self.__mower.y,
             orientation=self.__mower.orientation.name(),
         )
-
-    @staticmethod
-    def __is_move(instruction):
-        return instruction == MOVE_INSTRUCTION
-
-    @staticmethod
-    def __is_left_turn(instruction):
-        return instruction == LEFT_TURN_INSTRUCTION
-
-    @staticmethod
-    def __is_right_turn(instruction):
-        return instruction == RIGHT_TURN_INSTRUCTION
 
     @staticmethod
     def orientation_for(orientation_name: str):
