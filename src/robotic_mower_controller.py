@@ -17,13 +17,15 @@ class RoboticMowerController:
         self.__mower = mower
 
     def execute(self, instructions_string: str) -> Optional[str]:
+        instruction_to_command_map = {
+            "M": self.__mower.move,
+            "L": self.__mower.turn_left,
+            "R": self.__mower.turn_right
+        }
+
         for instruction in self.__instructions_split_from(instructions_string):
-            if self.__is_move(instruction):
-                self.__mower.move()
-            if self.__is_left_turn(instruction):
-                self.__mower.turn_left()
-            if self.__is_right_turn(instruction):
-                self.__mower.turn_right()
+            instruction_to_command_map[instruction]()
+
         return self.__format_position()
 
     @staticmethod
