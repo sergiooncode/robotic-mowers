@@ -214,3 +214,23 @@ def test_return_position_when_orientation_east_and_two_turn_right_instructions_r
     ).execute(instructions_string=received_instructions)
 
     assert expected_position == current_position
+
+
+def test_provided_acceptance_tests():
+    input = "55\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM"
+
+    actual_output = []
+    deployed_mowers_settings = input.split("\n")[1:]
+
+    expected_output_string = "1 3 N\n5 1 E"
+
+    for mower_group_index in range(len(deployed_mowers_settings) // 2):
+        situation = deployed_mowers_settings[mower_group_index * 2].split(" ")
+        instructions = deployed_mowers_settings[mower_group_index * 2 + 1]
+        current_position = RoboticMowerController(
+            mower=RoboticMower(x=int(situation[0]), y=int(situation[1]),
+                               orientation=RoboticMowerController.orientation_for(situation[2]))
+        ).execute(instructions_string=instructions)
+        actual_output.append(current_position)
+
+    assert expected_output_string == "\n".join(actual_output)

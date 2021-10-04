@@ -1,5 +1,9 @@
 from typing import Optional
 
+from src.orientation.east import East
+from src.orientation.north import North
+from src.orientation.south import South
+from src.orientation.west import West
 from src.robotic_mower import RoboticMower
 
 MOVE_INSTRUCTION = "M"
@@ -44,3 +48,12 @@ class RoboticMowerController:
     @staticmethod
     def __is_right_turn(instruction):
         return instruction == RIGHT_TURN_INSTRUCTION
+
+    @staticmethod
+    def orientation_for(orientation_name: str):
+        return {
+            North.NORTH_ORIENTATION: North(),
+            South.SOUTH_ORIENTATION: South(),
+            East.EAST_ORIENTATION: East(),
+            West.WEST_ORIENTATION: West(),
+        }[orientation_name]
