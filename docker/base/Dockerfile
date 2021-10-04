@@ -6,6 +6,7 @@ WORKDIR /srv
 
 COPY pyproject.toml /srv/pyproject.toml
 COPY poetry.lock /srv/poetry.lock
+COPY setup.cfg /srv/setup.cfg
 
 RUN python -m venv /srv
 
