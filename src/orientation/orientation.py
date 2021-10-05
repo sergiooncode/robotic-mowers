@@ -13,3 +13,7 @@ class Orientation(ABC):
     @abstractmethod
     def name(self):
         pass
+
+    @abstractmethod
+    def movement(self):
+        pass

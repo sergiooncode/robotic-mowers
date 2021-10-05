@@ -1,43 +1,32 @@
 from typing import Optional
 
+from src.command.move.move_forward import MoveForward
+from src.command.rotation.rotate_left import RotateLeft
+from src.command.rotation.rotate_right import RotateRight
+from src.factory_map import FactoryMap
 from src.orientation.east import East
 from src.orientation.north import North
 from src.orientation.south import South
 from src.orientation.west import West
-from src.robotic_mower import RoboticMower
 
 MOVE_INSTRUCTION = "M"
 LEFT_TURN_INSTRUCTION = "L"
 RIGHT_TURN_INSTRUCTION = "R"
-POSITION_FORMAT = "{x} {y} {orientation}"
 
 
 class RoboticMowerController:
-    def __init__(self, mower: RoboticMower):
-        self.__mower = mower
+    def __init__(self, factory_map: FactoryMap):
+        self.__factory_map = factory_map
 
     def execute(self, instructions_string: str) -> Optional[str]:
-        instruction_to_command_map = {
-            MOVE_INSTRUCTION: self.__mower.move,
-            LEFT_TURN_INSTRUCTION: self.__mower.turn_left,
-            RIGHT_TURN_INSTRUCTION: self.__mower.turn_right
-        }
-
         for instruction in self.__instructions_split_from(instructions_string):
-            instruction_to_command_map[instruction]()
+            self.__factory_map.execute(self.__map_command_to_instruction()[instruction])
 
-        return self.__format_position()
+        return self.__factory_map.mower_situation.format_position()
 
     @staticmethod
     def __instructions_split_from(instructions_string):
         return list(instructions_string)
-
-    def __format_position(self):
-        return POSITION_FORMAT.format(
-            x=self.__mower.x,
-            y=self.__mower.y,
-            orientation=self.__mower.orientation.name(),
-        )
 
     @staticmethod
     def orientation_for(orientation_name: str):
@@ -47,3 +36,11 @@ class RoboticMowerController:
             East.EAST_ORIENTATION: East(),
             West.WEST_ORIENTATION: West(),
         }[orientation_name]
+
+    @staticmethod
+    def __map_command_to_instruction():
+        return {
+            MOVE_INSTRUCTION: MoveForward(),
+            LEFT_TURN_INSTRUCTION: RotateLeft(),
+            RIGHT_TURN_INSTRUCTION: RotateRight(),
+        }
