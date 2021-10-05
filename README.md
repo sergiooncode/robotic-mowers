@@ -22,3 +22,10 @@ make build
 ```
 make tests
 ```
+
+## Considerations
+
+In the last commit (probably too large I have to admit although I think the intention is clear) the code structure
+necessary for the next stage of the kata development is introduced, that is, putting the robotic mower in a factory
+map with physical constrains (size and obstacles). Up to that commit the code, although being according to
+specifications, didn't have all the right abstractions and relied too much in basic strings for orientations, instructions, etc.
